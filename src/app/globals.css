@@ -14,3 +14,25 @@ body {
   background: var(--background);
   font-family: "Outfit", serif;
 }
+
+/* COLORS */
+
+.dark-yellow-bg {
+  background-color: #E9A23B;
+}
+.dark-yellow-text {
+  color: #E9A23B;
+}
+.dark-yellow-border {
+  border-color: #E9A23B;
+}
+
+.light-yellow-bg {
+  background-color: #F5E8D5;
+}
+.light-yellow-text {
+  color: #F5E8D5;
+}
+.light-yellow-border {
+  border-color: #F5E8D5;
+}
