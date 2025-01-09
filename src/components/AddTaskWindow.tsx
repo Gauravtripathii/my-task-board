@@ -1,6 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import Image from 'next/image';
 import taskType, { iconType, statusType } from '@/types/taskType';
+import toast from 'react-hot-toast';
 
 const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
 
@@ -11,8 +13,26 @@ const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
         status: statusType[""],
     });
 
-    const saveTask = (event: any) => {
+    const saveTask = async (event: any) => {
         event.preventDefault();
+        await axios.get("/api/me")
+            .then(response => {
+                let user_id = response.data.data.id;
+                const proceed = async () => {
+                    await axios.post("/api/add_task", { task_name: task.task_name, description: task.description, icon: task.icon, status: task.status, user_id })
+                        .then(response => {
+                            console.log(response);
+                            toast.success("Task Added!");
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+                proceed();
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     const deleteTask = (event: any) => {

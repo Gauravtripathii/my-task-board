@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { iconType, statusType } from "@/types/taskType";
+// import { iconType, statusType } from "@/types/taskType";
 
 const taskSchema = new mongoose.Schema({
     task_name: {
@@ -12,19 +12,17 @@ const taskSchema = new mongoose.Schema({
         required: [true, "Please provide a password"],
     },
     icon: {
-        type: iconType,
+        type: String,
         required: [true, "Please provide a password"],
     },
     status: {
-        type: statusType,
+        type: String,
         required: [true, "Please provide a password"],
     },
-    isVerified: {
-        type: Boolean,
-        default: false,
-    },
-    verifyToken: String,
-    verifyTokenExpiry: Date,
+    user_id : {
+        type: "string",
+        require: true,
+    }
 });
 
 
