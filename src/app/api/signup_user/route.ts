@@ -31,21 +31,21 @@ export async function POST(request: NextRequest) {
         const savedUser = await newUser.save();
 
         // send verification email
-        await sendEmail({
-            to: email,
-            subject: "Verify your email",
-            text: `
-            <html>
-                <body>
-                    <h1>Welcome to PennyForThought!</h1>
-                    <b>Verify your email by clicking on this link:</b><br/>
-                    <a href="${process.env.WEBSITE_URL}/verifyuser/${savedUser._id}/${token}">
-                        ${process.env.WEBSITE_URL}/verifyuser/${savedUser._id}/${token}
-                    </a>
-                </body>
-            </html>
-            `
-        });
+        // await sendEmail({
+        //     to: email,
+        //     subject: "Verify your email",
+        //     text: `
+        //     <html>
+        //         <body>
+        //             <h1>Welcome to PennyForThought!</h1>
+        //             <b>Verify your email by clicking on this link:</b><br/>
+        //             <a href="${process.env.WEBSITE_URL}/verifyuser/${savedUser._id}/${token}">
+        //                 ${process.env.WEBSITE_URL}/verifyuser/${savedUser._id}/${token}
+        //             </a>
+        //         </body>
+        //     </html>
+        //     `
+        // });
 
         // create token data
         const tokenData = {
