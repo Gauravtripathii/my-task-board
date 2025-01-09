@@ -4,6 +4,7 @@ import React from "react";
 import Head from "@/components/Head";
 import AddTask from "@/components/AddTask";
 import AddTaskWindow from "@/components/AddTaskWindow";
+import Auth from "@/components/Auth";
 
 export default function Home() {
 
@@ -17,6 +18,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-[100svh] p-10 flex flex-col gap-5 relative">
+      <Auth />
       <Head />
       <AddTask toggleAddTaskWindow={toggleAddTaskWindow} />
       <AddTaskWindow addTaskWindowActive={addTaskWindowActive} toggleAddTaskWindow={toggleAddTaskWindow} />

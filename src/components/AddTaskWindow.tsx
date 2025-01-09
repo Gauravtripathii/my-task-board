@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import taskType, { iconType, statusType } from '@/static/taskType';
+import taskType, { iconType, statusType } from '@/types/taskType';
 
 const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
 
