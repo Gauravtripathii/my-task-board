@@ -4,7 +4,7 @@ import Image from 'next/image';
 import taskType, { iconType, statusType } from '@/types/taskType';
 import toast from 'react-hot-toast';
 
-const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
+const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow, addToTasks, tasks }: any) => {
 
     const [task, setTask] = React.useState<taskType>({
         task_name: "",
@@ -21,8 +21,8 @@ const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
                 const proceed = async () => {
                     await axios.post("/api/add_task", { task_name: task.task_name, description: task.description, icon: task.icon, status: task.status, user_id })
                         .then(response => {
-                            console.log(response);
                             toast.success("Task Added!");
+                            addToTasks([...tasks, task]);
                         })
                         .catch(error => {
                             console.log(error);
@@ -122,7 +122,7 @@ const AddTaskWindow = ({ addTaskWindowActive, toggleAddTaskWindow }: any) => {
                     </span>
                 </p>
 
-                <p className="flex justify-end gap-5">
+                <p className="flex justify-center gap-5 pb-5">
                     <button onClick={deleteTask} className="gray-2-bg text-white font-medium flex items-center justify-center border rounded-full gray-2-border px-5 py-3">Delete <Image src="/assets/Trash.svg" width={900} height={900} alt='logo' className="w-full h-full" /></button>
                     <button onClick={saveTask} className="bg-blue-700 text-white font-medium flex items-center justify-center border rounded-full border-blue-700 px-5 py-3">Save <Image src="/assets/Done_round.svg" width={900} height={900} alt='logo' className="w-full h-full" /></button>
                 </p>
