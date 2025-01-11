@@ -1,6 +1,7 @@
 import React from 'react';
 import taskType, { iconType, statusType } from '@/types/taskType';
 import axios from 'axios';
+import Image from 'next/image';
 
 const TasksListing = ({ tasks, addToTasks }: any) => {
 
@@ -28,14 +29,21 @@ const TasksListing = ({ tasks, addToTasks }: any) => {
     }, []);
 
     return (
-        <div>
+        <div className='flex flex-col gap-3'>
             {
                 tasks.map((task: taskType, index: number) => (
-                    <div key={index} className="">
-                        {task.task_name}
+                    <div key={index} className={`individual-task-container w-full h-20 rounded-xl flex items-center ${task.status as unknown as string === "Completed" ? "dark-green-bg" : task.status as unknown as string === "In Progress" ? "medium-yellow-bg" : "light-red-bg"}`}>
+                        <div className={`task-icon-container p-3 w-20`}>
+                            <Image src={`/assets/task icons/${task.icon}.gif`} alt='computer' height={900} width={900} className="w-full h-full rounded-lg" />
+                        </div>
+
+                        <div className="text-[20px] font-medium capitalize">{task.task_name}</div>
+                        
                     </div>
                 ))
             }
+
+            {/* iconType[task.icon as unknown as keyof typeof iconType] === iconType["boy_computer"] */}
         </div>
     );
 }
