@@ -1,9 +1,19 @@
 import React from 'react';
-import taskType, { iconType, statusType } from '@/types/taskType';
+import taskType from '@/types/taskType';
 import axios from 'axios';
 import Image from 'next/image';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const TasksListing = ({ tasks, addToTasks }: any) => {
+const TasksListing = ({ tasks, addToTasks, deleteTask }: any) => {
+
+    const [toBeDeleted, setToBeDeleted] = React.useState<taskType>();
+    const [deleteTaskWindow, setDeleteTaskWindow] = React.useState(false);
+
+    const deleteTaskHandler = (event: any) => {
+        event.preventDefault();
+        deleteTask(toBeDeleted);
+        setDeleteTaskWindow(false);
+    }
 
     React.useEffect(() => {
         const getAllTasks = async (user_id: string) => {
@@ -41,15 +51,27 @@ const TasksListing = ({ tasks, addToTasks }: any) => {
                             <div className="text-[17px] font-medium capitalize">{task.task_name}</div>
                         </div>
 
-                        <div className="task-icon-container p-7 w-20">
-                            <Image src={`/assets/Edit_duotone.svg`} alt='computer' height={900} width={900} className="w-full h-full rounded-lg" />
+                        <div onClick={() => {
+                            setToBeDeleted(task);
+                            setDeleteTaskWindow(true);
+                        }} className="task-icon-container p-7 w-20">
+                            <DeleteIcon />
                         </div>
 
                     </div>
                 ))
             }
 
-            {/* iconType[task.icon as unknown as keyof typeof iconType] === iconType["boy_computer"] */}
+            {/* delete task popup */}
+            {deleteTaskWindow && (
+                <div className="delete-task-window w-3/4 backdrop-blur-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-5 border shadow-md shadow-black rounded-lg flex flex-col items-center gap-3">
+                    <h1 className="font-bold text-[23px] text-white">Are you sure?</h1>
+                    <div className="flex gap-3">
+                        <button onClick={deleteTaskHandler} className="bg-blue-500 text-white text-[20px] px-5 py-2 rounded-lg cursor-pointer">Yes, Delete!</button>
+                        <button onClick={() => setDeleteTaskWindow(false)} className="bg-slate-500 text-white text-[20px] px-5 py-2 rounded-lg cursor-pointer">Cancle</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -10,6 +10,8 @@ import TasksListing from "@/components/TasksListing";
 
 import taskType, { iconType, statusType } from "@/types/taskType";
 
+import toast from "react-hot-toast";
+
 export default function Home() {
 
   // states
@@ -31,6 +33,20 @@ export default function Home() {
   }
   const addToTasks = (tasksx: taskType[]) => {
     setTasks(tasksx);
+  }
+  const deleteTask = async (taskx: any) => {
+    console.log("to be deleted : ", taskx._id);
+    await axios.post("/api/delete_task", { id: taskx._id })
+      .then(response => {
+        if (response.status === 200) {
+          setTasks(tasks.filter(task => task.task_name != taskx.task_name));
+          toast.success("Task Deleted!");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error("Could'n delete");
+      });
   }
 
   // on load
@@ -59,7 +75,7 @@ export default function Home() {
     <div className="w-full h-[100svh] p-10 flex flex-col gap-5 relative">
       <Auth authActive={authActive} toggleAuthActive={toggleAuthActive} />
       <Head />
-      <TasksListing tasks={tasks} addToTasks={addToTasks} />
+      <TasksListing tasks={tasks} addToTasks={addToTasks} deleteTask={deleteTask} />
       <AddTask toggleAddTaskWindow={toggleAddTaskWindow} addToTasks={addToTasks} tasks={tasks} />
       <AddTaskWindow addTaskWindowActive={addTaskWindowActive} toggleAddTaskWindow={toggleAddTaskWindow} addToTasks={addToTasks} tasks={tasks} />
 
