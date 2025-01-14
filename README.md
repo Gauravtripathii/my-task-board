@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Task Board
 
-## Getting Started
+**My Task Board** is a full-stack task management application developed as part of a challenge from [devchallenges.io](https://devchallenges.io). The application allows users to manage tasks by performing fundamental HTTP operations such as GET, POST, PUT, and DELETE. It provides a simple yet efficient interface for organizing and updating tasks, with changes saved automatically.
 
-First, run the development server:
+## Features
+- **Task Management**: Add, edit, delete, and retrieve tasks.
+- **User Authentication**: Secure login system to ensure personalized task boards.
+- **Real-time Updates**: The board is updated immediately as changes are made.
+- **Accessible**: Task boards are available to users after logging in.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
+### Frontend
+- **Next.js**: For server-side rendering and efficient frontend development.
+- **Tailwind CSS**: For styling and responsive design.
+- **Material UI (Icons)**: For modern and consistent icons.
+- **react-hot-toast**: For displaying notifications and alerts.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
+- **Node.js**: As the runtime environment.
+- **MongoDB**: For storing task and user data.
+- **Mongoose**: For object data modeling (ODM).
+- **jsonwebtoken**: For secure authentication.
+- **bcryptjs**: For hashing passwords.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
+### Prerequisites
+- Node.js and npm/yarn installed on your system.
+- MongoDB URI for database connection.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Gauravtripathii/my-task-board
+   cd my-task-board
+   ```
 
-## Learn More
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and configure the following variables:
+   ```env
+   MONGO_URI=your_mongodb_connection_uri
+   JWT_SECRET=your_jwt_secret
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open your browser and navigate to `http://localhost:3000`.
 
-## Deploy on Vercel
+## Usage
+1. Register a new account or log in with an existing one.
+2. Create tasks by entering the task details and clicking on the "Add Task" button.
+3. Edit or delete tasks as needed.
+4. Log out when finished.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Dependencies
+- `next`
+- `react`
+- `react-dom`
+- `tailwindcss`
+- `@mui/icons-material`
+- `react-hot-toast`
+- `mongoose`
+- `jsonwebtoken`
+- `bcryptjs`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Acknowledgments
+- [devchallenges.io](https://devchallenges.io) for providing the challenge inspiration.
+
+---
+
