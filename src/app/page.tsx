@@ -72,7 +72,7 @@ export default function Home() {
   }, [tasks])
 
   return (
-    <div className="w-full h-[100svh] p-10 flex flex-col gap-5 relative">
+    <div className="w-full h-[100svh] p-10 sm:px-20 md:px-32 md:py-16 lg:px-48 lg:py-24 xl:w-1/2 xl:px-0 xl:mx-auto 2xl:w-[40%] flex flex-col gap-5 relative">
       <Auth authActive={authActive} toggleAuthActive={toggleAuthActive} />
       <Head />
       <TasksListing tasks={tasks} addToTasks={addToTasks} deleteTask={deleteTask} />

@@ -48,7 +48,7 @@ const TasksListing = ({ tasks, addToTasks, deleteTask }: any) => {
                                 <Image src={`/assets/task icons/${task.icon}.gif`} alt='computer' height={900} width={900} className="w-full h-full rounded-lg" />
                             </div>
 
-                            <div className="text-[17px] font-medium capitalize">{task.task_name}</div>
+                            <div className="text-[17px] lg:text-[20px] font-medium capitalize">{task.task_name}</div>
                         </div>
 
                         <div onClick={() => {
